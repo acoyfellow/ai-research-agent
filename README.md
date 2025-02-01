@@ -1,4 +1,4 @@
-# 🤖 AI Research Assistant
+# 🤖 AI Research Agent
 
 An intelligent, self-improving research system powered by Cloudflare Workers and OpenAI. This system uses two Durable Objects to recursively generate, verify, and refine AI research responses.
 
@@ -27,13 +27,13 @@ An intelligent, self-improving research system powered by Cloudflare Workers and
 
 2. Create a new project:
    ```bash
-   wrangler generate ai-research-assistant
-   cd ai-research-assistant
+   wrangler generate ai-research-Agent
+   cd ai-research-Agent
    ```
 
 3. Configure your `wrangler.toml`:
    ```toml
-   name = "ai-research-assistant"
+   name = "ai-research-Agent"
    main = "src/index.ts"
    compatibility_date = "2025-02-01"
 

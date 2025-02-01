@@ -1,7 +1,7 @@
 {
-  "name": "ai-research-assistant",
+  "name": "ai-research-Agent",
   "version": "1.0.0",
-  "description": "AI-powered research assistant using Cloudflare Workers and Durable Objects",
+  "description": "AI-powered research Agent using Cloudflare Workers and Durable Objects",
   "main": "dist/index.js",
   "scripts": {
     "build": "wrangler build",

@@ -1,9 +1,8 @@
-import { Hono } from 'hono'
-import { html } from 'hono/html'
-import uiTemplate from './ui.html'
+import { Hono } from 'hono';
+import uiTemplate from './ui.html';
 
 // Modified main app to use Hono
-const app = new Hono<{ Bindings: Env }>()
+const app = new Hono<{ Bindings: Env }>();
 
 export interface Env {
   RESEARCH_FETCHER_DO: DurableObjectNamespace;
