@@ -1,0 +1,23 @@
+name = "ai-research-assistant"
+main = "src/index.ts"
+compatibility_date = "2024-02-01"
+account_id = ""
+
+[vars]
+# Remember to set this in your deployment environment
+OPENAI_API_KEY = ""
+
+[[durable_objects.bindings]]
+name = "RESEARCH_FETCHER_DO"
+class_name = "ResearchFetcherDO"
+
+[[durable_objects.bindings]]
+name = "FACT_CHECKER_DO"
+class_name = "FactCheckerDO"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["ResearchFetcherDO", "FactCheckerDO"] 
+
+[observability.logs]
+enabled = true

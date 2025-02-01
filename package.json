@@ -1,0 +1,19 @@
+{
+  "name": "ai-research-assistant",
+  "version": "1.0.0",
+  "description": "AI-powered research assistant using Cloudflare Workers and Durable Objects",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "wrangler build",
+    "deploy": "wrangler publish",
+    "dev": "wrangler dev"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "hono": "^4.6.20"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "wrangler": "^3.0.0"
+  }
+}
