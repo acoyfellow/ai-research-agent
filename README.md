@@ -110,10 +110,6 @@ wrangler tail
 
 MIT License - see [LICENSE](LICENSE) for details
 
-## 🤝 Contributing
-
-Contributions welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
-
 ## 🌟 Support
 
 - Star this repo
@@ -124,4 +120,5 @@ Contributions welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for
 ---
 
 Built with ❤️ using Cloudflare Workers and OpenAI
- 
+
+Inspired by [sunil pai @threepointone](https://x.com/threepointone/status/1885119427223707872)
