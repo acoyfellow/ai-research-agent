@@ -104,9 +104,17 @@ export class ResearchFetcherDO {
         );
       }
 
-      const research = await askAI(`Research this topic: ${topic}`, this.env);
+      const aiResponse = await askAI(`Research this topic: ${topic}`, this.env);
+
+      const finalJson = {
+        research: aiResponse.content,
+        iteration
+      };
+
+      console.log('ResearchFetcherDO response:', { finalJson });
+
       return new Response(
-        JSON.stringify({ research, iteration }),
+        JSON.stringify(finalJson),
         {
           headers: { 'Content-Type': 'application/json' }
         }
@@ -131,7 +139,7 @@ export class FactCheckerDO {
       console.log('Fact check received from OpenAI')
 
       return new Response(JSON.stringify({
-        research: refined,
+        research: refined.content,
         iteration: (body.iteration || 0) + 1
       }));
     } catch (error) {
@@ -168,7 +176,7 @@ const uiTemplate = `
       <div class="bg-white rounded-lg shadow p-4">
         <textarea id="topic" class="w-full p-2 border rounded mb-4 h-32"
           placeholder="Enter your research topic..."></textarea>
-        <button onclick="startResearch()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <button onclick="startResearch(event)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
           Research
         </button>
       </div>
@@ -180,11 +188,19 @@ const uiTemplate = `
     </div>
 
     <script>
-      async function startResearch() {
+      async function startResearch(event) {
         const topic = document.getElementById('topic').value;
         const resultDiv = document.getElementById('result');
         const contentDiv = document.getElementById('content');
+        const button = event.target;
 
+        if (!topic) {
+          contentDiv.innerHTML = 'Please enter a topic';
+          return;
+        }
+
+        button.disabled = true;
+        button.innerHTML = 'Researching...';
         resultDiv.classList.remove('hidden');
         contentDiv.innerHTML = 'Researching...';
 
@@ -194,10 +210,24 @@ const uiTemplate = `
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ topic })
           });
+          
           const data = await response.json();
-          contentDiv.innerHTML = data.research;
+          
+          if (data.error) {
+            contentDiv.innerHTML = 'Error: ' + data.error;
+            button.disabled = false;
+            button.innerHTML = 'Research';
+            return;
+          }
+          
+          contentDiv.innerHTML = data.research || 'No results found';
+          button.disabled = false;
+          button.innerHTML = 'Research';
+          
         } catch (error) {
-          contentDiv.innerHTML = 'Error: ' + error.message;
+          contentDiv.innerHTML = 'Error: ' + (error.message || 'Unknown error occurred');
+          button.disabled = false;
+          button.innerHTML = 'Research';
         }
       }
     </script>
