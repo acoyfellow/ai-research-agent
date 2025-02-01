@@ -6,6 +6,10 @@ account_id = ""
 [vars]
 # Remember to set this in your deployment environment
 OPENAI_API_KEY = ""
+OPENAI_MODEL = "gpt-4o-mini"
+MAX_ITERATIONS = "5"
+CONFIDENCE_THRESHOLD = "0.9"
+TIMEOUT_MS = "30000"
 
 [[durable_objects.bindings]]
 name = "RESEARCH_FETCHER_DO"

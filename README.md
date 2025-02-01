@@ -4,58 +4,49 @@ An intelligent, self-improving research system powered by Cloudflare Workers and
 
 ## ✨ Features
 
-- **Self-Improving Responses**: Iteratively refines research through multiple passes
-- **Fact Checking**: Automatically verifies and corrects information
-- **Scalable Architecture**: Built on Cloudflare's edge network
-- **Real-time Processing**: Get immediate responses while refinement happens in background
-- **Durable Objects**: Maintains state and consistency across iterations
+- **Iterative Research**: Uses multiple AI passes to refine responses
+- **Fact Checking**: Verifies information through a dedicated fact-checking phase
+- **Edge Computing**: Built on Cloudflare Workers for global performance
+- **Durable Objects**: Maintains consistency across research iterations
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- [Bun](https://bun.sh/) (latest version)
+- [Node.js](https://nodejs.org/) or [Bun](https://bun.sh/) (latest version)
 - [Cloudflare Workers](https://workers.cloudflare.com/) account
 - [OpenAI API key](https://platform.openai.com/account/api-keys)
 
 ### Installation
 
-1. Install Wrangler:
+1. Clone and install dependencies:
    ```bash
-   bun install -g wrangler
+   git clone https://github.com/yourusername/ai-research-agent.git
+   cd ai-research-agent
+   npm install # or bun install
    ```
 
-2. Create a new project:
-   ```bash
-   wrangler generate ai-research-Agent
-   cd ai-research-Agent
-   ```
-
-3. Configure your `wrangler.toml`:
+2. Copy `wrangler.toml.example` to `wrangler.toml` and configure:
    ```toml
    name = "ai-research-Agent"
    main = "src/index.ts"
-   compatibility_date = "2025-02-01"
+   compatibility_date = "2024-02-01"
 
    [vars]
-   OPENAI_API_KEY = "your-openai-api-key"
-
-   [[durable_objects]]
-   bindings = [
-     { name = "RESEARCH_FETCHER_DO", class_name = "ResearchFetcherDO" },
-     { name = "FACT_CHECKER_DO", class_name = "FactCheckerDO" }
-   ]
+   OPENAI_API_KEY = "your-key-here"
+   OPENAI_MODEL = "gpt-4-turbo-preview"
+   MAX_ITERATIONS = "5"
+   CONFIDENCE_THRESHOLD = "0.9"
    ```
 
-4. Deploy your worker:
+3. Deploy:
    ```bash
-   bun install
-   bun run deploy
+   npm run deploy # or bun run deploy
    ```
 
 ## 🔧 Usage
 
-Send a POST request to your worker's endpoint:
+Send a POST request to start research:
 
 ```bash
 curl -X POST https://<your-worker>.workers.dev/start \
@@ -67,44 +58,35 @@ curl -X POST https://<your-worker>.workers.dev/start \
 
 ```json
 {
-  "status": "success",
-  "research": {
-    "summary": "...",
-    "iterations": 3,
-    "confidence_score": 0.95
-  }
+  "research": "Quantum computing explained in simple terms...",
+  "iteration": 2
 }
 ```
 
 ## 🔍 How It Works
 
-1. **ResearchFetcherDO**: Generates initial research using OpenAI
-2. **FactCheckerDO**: Verifies and refines the research
-3. **Iteration Loop**: Continues refinement until confidence threshold is met
-4. **Final Response**: Returns the most accurate and refined version
+1. **Initial Research**: ResearchFetcherDO generates the first research pass using OpenAI
+2. **Fact Checking**: FactCheckerDO verifies and improves the research
+3. **Iteration**: Process repeats until max iterations or confidence threshold is met
+4. **Response**: Returns the final refined research
 
-## 📊 Monitoring
+## ⚙️ Environment Variables
 
-Monitor your worker's performance:
-
-```bash
-wrangler tail
-```
-
-## ⚙️ Configuration Options
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `MAX_ITERATIONS` | Maximum refinement loops | 5 |
-| `CONFIDENCE_THRESHOLD` | Required accuracy score | 0.9 |
-| `TIMEOUT_MS` | Maximum processing time | 30000 |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `OPENAI_API_KEY` | Your OpenAI API key | Required |
+| `OPENAI_MODEL` | OpenAI model to use | gpt-4-turbo-preview |
+| `MAX_ITERATIONS` | Maximum research passes | 5 |
+| `CONFIDENCE_THRESHOLD` | Required accuracy threshold | 0.9 |
 
 ## 🛠️ Development
 
-1. Clone the repository
-2. Install dependencies: `bun install`
-3. Start local development: `bun run dev`
-4. Run tests: `bun test`
+1. Start local development:
+   ```bash
+   npm run dev # or bun run dev
+   ```
+
+2. Visit `http://localhost:8787` to use the web interface
 
 ## 📝 License
 

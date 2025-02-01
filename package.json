@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20240208.0",
-    "hono": "^4.6.20"
+    "hono": "^4.6.20",
+    "openai": "^4.82.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

@@ -6,8 +6,7 @@
       "ES2020"
     ],
     "types": [
-      "@cloudflare/workers-types",
-      "vite/client"
+      "@cloudflare/workers-types"
     ],
     "moduleResolution": "node",
     "strict": true,
