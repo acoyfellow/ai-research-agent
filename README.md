@@ -21,7 +21,7 @@ An intelligent, self-improving research system powered by Cloudflare Workers and
 
 1. Clone and install dependencies:
    ```bash
-   git clone https://github.com/yourusername/ai-research-agent.git
+   git clone https://github.com/acoyfellow/ai-research-agent.git
    cd ai-research-agent
    npm install # or bun install
    ```

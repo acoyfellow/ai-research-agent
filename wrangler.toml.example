@@ -1,4 +1,4 @@
-name = "ai-research-Agent"
+name = "ai-research-agent"
 main = "src/index.ts"
 compatibility_date = "2024-02-01"
 account_id = ""

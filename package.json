@@ -1,5 +1,5 @@
 {
-  "name": "ai-research-Agent",
+  "name": "ai-research-agent",
   "version": "1.0.0",
   "description": "AI-powered research Agent using Cloudflare Workers and Durable Objects",
   "main": "dist/index.js",
