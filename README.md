@@ -34,7 +34,7 @@ An intelligent, self-improving research system powered by Cloudflare Workers and
 
    [vars]
    OPENAI_API_KEY = "your-key-here"
-   OPENAI_MODEL = "gpt-4-turbo-preview"
+   OPENAI_MODEL = "gpt-4o-mini"
    MAX_ITERATIONS = "5"
    CONFIDENCE_THRESHOLD = "0.9"
    ```
@@ -75,7 +75,7 @@ curl -X POST https://<your-worker>.workers.dev/start \
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `OPENAI_API_KEY` | Your OpenAI API key | Required |
-| `OPENAI_MODEL` | OpenAI model to use | gpt-4-turbo-preview |
+| `OPENAI_MODEL` | OpenAI model to use | gpt-4o-mini |
 | `MAX_ITERATIONS` | Maximum research passes | 5 |
 | `CONFIDENCE_THRESHOLD` | Required accuracy threshold | 0.9 |
 
